@@ -41,10 +41,6 @@ public class Users extends Controller
         User user = User.find.where().like("id", "%"+id+"%").findUnique();
 
 
-        if(user.lastVisit!=null)
-        System.out.println(currentDate.getTime()-user.lastVisit.getTime());
-
-
         if(user.lastVisit!=null && (currentDate.getTime()-user.lastVisit.getTime()<=300000)) {
                 return true;
         }
