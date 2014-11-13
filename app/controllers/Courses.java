@@ -1,7 +1,6 @@
 package controllers;
 
 import models.Course;
-import models.Picture;
 import models.User;
 import play.data.Form;
 import play.mvc.Controller;

@@ -3,10 +3,9 @@ package models;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 public class User extends Model {
@@ -23,6 +22,9 @@ public class User extends Model {
     public String password;
 
 
+    public Date lastVisit;
+
+
 
     public User(String email, String name, int userType, String password, String country, String birthDate, String city, int id) {
         this.email = email;
@@ -33,6 +35,7 @@ public class User extends Model {
         this.userType = userType;
         this.password = password;
         this.id = id;
+        this.lastVisit = java.util.Calendar.getInstance().getTime();
     }
 
     public static User authenticate(String email, String password) {

@@ -16,6 +16,7 @@ import views.html.notifications;
 import views.html.userpage;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -26,6 +27,30 @@ import java.util.ListIterator;
 @Security.Authenticated(Secured.class)
 public class Users extends Controller
 {
+
+    public static void onlineUpdate(int id) {   // время последней активности
+
+        User user = User.find.where().like("id", "%"+id+"%").findUnique();
+        user.lastVisit = java.util.Calendar.getInstance().getTime();
+        user.save();
+
+    }
+
+    public static boolean isOnline(int id) {   // проверка на онлайн
+        Date currentDate = java.util.Calendar.getInstance().getTime();;
+        User user = User.find.where().like("id", "%"+id+"%").findUnique();
+
+
+        if(user.lastVisit!=null)
+        System.out.println(currentDate.getTime()-user.lastVisit.getTime());
+
+
+        if(user.lastVisit!=null && (currentDate.getTime()-user.lastVisit.getTime()<=300000)) {
+                return true;
+        }
+            return false;
+    }
+
 
 
     public static Result showUserPage(Long user) {   // генерация страницы пользователя

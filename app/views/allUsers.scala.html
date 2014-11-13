@@ -17,7 +17,11 @@
             <ul>
             @for(user <- users) {
                 <li>
-                    <a href="@routes.Users.showUserPage(user.id)">  @user.name </a> <button type="submit" name="email" value="@user.email">Add</button>
+                    <p><a href="@routes.Users.showUserPage(user.id)">  @user.name </a> - is
+                    @if(Users.isOnline(user.id)) { online } else { offline }
+
+
+                <button type="submit" name="email" value="@user.email">Add</button></p>
                 </li>
             }
             </ul>

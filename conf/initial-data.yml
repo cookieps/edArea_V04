@@ -13,12 +13,14 @@
     userType:       2
     id:             2
 
+
 - &jeff !!models.User
     email:          jeff@gmail.com
     name:           Jeff
     password:       secret
     userType:       2
     id:             3
+
 
 - &jeff !!models.User
     email:          paul@mail.com
